@@ -171,7 +171,7 @@
                             <select id="course" name="course">
                                 <option value="">Choose a course</option>
                                 <option value="web-development">10th Standard Physical Science</option>
-                                <option value="mobile-development">Intermediate Physics(oming soon)</option>
+                                <option value="mobile-development">Intermediate Physics(coming soon)</option>
                                 <option value="cybersecurity">Intermediate Chemistry(coming soon)</option>
                             </select>
                             <div class="error" id="courseError">Please select a course</div>
@@ -189,6 +189,56 @@
                             <p>we will contact you for furtherdetails & instructions.</p>
                         </div>
                     </form>
+                    <script>
+document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+    const messageDiv = document.getElementById('message');
+    const submitBtn = this.querySelector('button[type="submit"]');
+    
+    // Disable button and show loading
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Registering...';
+    messageDiv.style.display = 'none';
+    
+    try {
+        // Replace with your actual Web App URL
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwTfl-J6V4A9204cSYUoQ5S0R_-COReBAbxpBl7UnW8HN2tFxldvhEu_1YwHaJAwu7z/exec', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            messageDiv.style.display = 'block';
+            messageDiv.style.backgroundColor = '#d4edda';
+            messageDiv.style.color = '#155724';
+            messageDiv.style.border = '1px solid #c3e6cb';
+            messageDiv.innerHTML = '✅ ' + (result.message || 'Registration successful!');
+            this.reset();
+        } else {
+            throw new Error(result.error || 'Registration failed');
+        }
+        
+    } catch (error) {
+        messageDiv.style.display = 'block';
+        messageDiv.style.backgroundColor = '#f8d7da';
+        messageDiv.style.color = '#721c24';
+        messageDiv.style.border = '1px solid #f5c6cb';
+        messageDiv.innerHTML = '❌ Error: ' + error.message;
+        console.error('Registration error:', error);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Register';
+    }
+});
+</script>
                 </div>
             </div>
         </div>
@@ -391,18 +441,6 @@ document.addEventListener('keydown', function(e) {
         openAdminPanel();
     }
 });
-</script>
-<script>
-    const scripturl = "https://script.google.com/macros/s/AKfycbx2nmv8EHozcBqBJj0yR4ev3EeND_UVhp-Ff-yxG01FoZJeK8Wa3l6eYk7GA6--7Xvd/exec"
-    const form = document.forms['product']
-
-    form.addEventListener{'submit',, e => {
-        e.preventDefault()
-        fetch(scripturl, {method: 'POST', body: new FormData(form)})
-        .then(response => alert("Thank You! Your Form is Submitted Successfully."))
-        .then(() => {  window.location.reload(); })
-        .catch(error => console.error('Error!', error.message))
-    }}
 </script>
 </body>
 </html>

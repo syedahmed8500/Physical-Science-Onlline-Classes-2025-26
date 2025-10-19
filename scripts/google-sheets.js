@@ -1,5 +1,5 @@
 // Google Sheets Integration
-const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzkf22MgLE8FdEy_Dc6oVPm2LefqSMUHMfGVY4xiVn3OmQPqXRLCIuAJSQZwmk-4-fVuA/exec';
 
 function saveToGoogleSheets(formData) {
     fetch(scriptURL, {

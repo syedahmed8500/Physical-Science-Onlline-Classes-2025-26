@@ -308,5 +308,89 @@
     </footer>
 
     <script src="scripts/script.js"></script>
+<!-- Admin Panel (Hidden by default) -->
+<div id="adminPanel" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; padding: 20px; overflow-y: auto;">
+    <div class="container">
+        <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 30px;">
+            <h2>LearnIT Academy - Admin Panel</h2>
+            <button onclick="closeAdminPanel()" class="btn btn-secondary" style="margin-left: auto;">Close</button>
+        </div>
+        
+        <div class="admin-actions" style="margin-bottom: 30px;">
+            <button onclick="exportToCSV()" class="btn btn-primary">Export to CSV</button>
+            <button onclick="clearAllData()" class="btn btn-secondary">Clear All Data</button>
+            <button onclick="refreshData()" class="btn btn-primary">Refresh Data</button>
+        </div>
+        
+        <div id="adminData" style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+            <h3>Registration Data</h3>
+            <div id="registrationTable"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Add this script to enable admin panel -->
+<script>
+// Admin panel functions
+function openAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'block';
+    refreshData();
+}
+
+function closeAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'none';
+}
+
+function refreshData() {
+    const submissions = viewRegistrations();
+    const table = document.getElementById('registrationTable');
+    
+    if (submissions.length === 0) {
+        table.innerHTML = '<p>No registration data found.</p>';
+        return;
+    }
+    
+    let html = `
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr style="background: #4a00e0; color: white;">
+                    <th style="padding: 12px; text-align: left;">ID</th>
+                    <th style="padding: 12px; text-align: left;">Full Name</th>
+                    <th style="padding: 12px; text-align: left;">Email</th>
+                    <th style="padding: 12px; text-align: left;">Phone</th>
+                    <th style="padding: 12px; text-align: left;">Course</th>
+                    <th style="padding: 12px; text-align: left;">Timestamp</th>
+                    <th style="padding: 12px; text-align: left;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    submissions.forEach(submission => {
+        html += `
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 12px;">${submission.id}</td>
+                <td style="padding: 12px;">${submission.fullName}</td>
+                <td style="padding: 12px;">${submission.email}</td>
+                <td style="padding: 12px;">${submission.phone}</td>
+                <td style="padding: 12px;">${submission.course}</td>
+                <td style="padding: 12px;">${submission.timestamp}</td>
+                <td style="padding: 12px;">${submission.status}</td>
+            </tr>
+        `;
+    });
+    
+    html += `</tbody></table>`;
+    table.innerHTML = html;
+}
+
+// Add admin access (press Ctrl+Shift+A to open admin panel)
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+        e.preventDefault();
+        openAdminPanel();
+    }
+});
+</script>
 </body>
 </html>

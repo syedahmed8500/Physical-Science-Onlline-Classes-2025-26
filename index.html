@@ -3,65 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Class Registration</title>
+    <meta name="description" content="LearnIT Academy - Register for online classes and advance your skills">
+    <title>LearnIT Academy - Online Class Registration</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>LEARNIT ACADEMY</h1>
-            <p class="subtitle">Empowering minds, Igniting Curiosity</p>
-            <h2>Online Class Registration</h2>
-            <p class="subtitle">Register for our comprehensive online courses today!</p>
-            <p class="subtitle">Note: Last Date for registration is 14th November 2025</p>
-        </header>
-        
-        
-        <section class="form-section">
-            <h2 class="section-title">Student's Registration Form</h2>
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label for="fullName" class="required">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
-                    <div class="error" id="fullNameError">Please enter your full name</div>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="images/logo.png" alt="LearnIT Academy Logo">
                 </div>
-                
-                <div class="form-group">
-                    <label for="fatherName" class="required">Father's Name</label>
-                    <input type="text" id="fatherName" name="fatherName" placeholder="Enter your father's name">
-                    <div class="error" id="fatherNameError">Please enter your father's name</div>
+                <div class="academy-name">
+                    <h1>LEARNIT ACADEMY</h1>
+                    <p>Empowering Minds Igniting Curiosity</p>
                 </div>
-                
-                <div class="form-group">
-                    <label for="email" class="required">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email address">
-                    <div class="error" id="emailError">Please enter a valid email address</div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#registration">Registration</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Learn Physical Science with Our Online Courses</h2>
+                <p>Join us in our comprehensive online learning program.</p>
+                <div class="cta-buttons">
+                    <a href="#registration" class="btn btn-primary">Register Now</a>
+                    <a href="#courses" class="btn btn-secondary">View Courses</a>
                 </div>
-                
-                <div class="form-group">
-                    <label for="phone" class="required">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
-                    <div class="error" id="phoneError">Please enter a valid phone number</div>
+            </div>
+            <div class="hero-image">
+                <div class="image-placeholder">
+                    <h3>Online Learning Platform</h3>
+                    <p>Interactive Classes • Class Recording • Expert Instructors • Career Support</p>
                 </div>
-                
-                <div class="form-group">
-                    <label for="additionalInfo">Additional Information (Optional)</label>
-                    <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any additional information you'd like to share"></textarea>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2 class="section-title">Our Popular Courses</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-icon">💻</div>
+                    <h3>10th Standard Physical Science</h3>
+                    <p>Learn the entire syllabus of TG SSC Physical Science for 10th Standard</p>
+                    <div class="course-details">
+                        <span class="duration">5 Months</span>
+                        <span class="level">10th Standard Students</span>
+                    </div>
                 </div>
-                
-                <button type="submit" class="btn">Register Now</button>
-                
-                <div class="success-message" id="successMessage">
-                    <h3>Thank you for registering!</h3>
-                    <p>We've sent a confirmation email to your address. You'll receive further instructions shortly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Process Flowchart -->
+    <!-- section class="process">
+        <div class="container">
+            <h2 class="section-title">Simple Registration Process</h2>
+            <div class="flowchart">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Visit Registration Page</h3>
+                        <p>Navigate to our registration section</p>
+                    </div>
                 </div>
-            </form>
-        </section>
-        
-        <footer>
-            <p>&copy; 2023 Online Class Registration. All rights reserved.</p>
-        </footer>
-    </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Fill Out Form</h3>
+                        <p>Provide your details in the registration form</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Form Validation</h3>
+                        <p>Our system validates your information</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Submit Registration</h3>
+                        <p>Complete your registration process</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Receive Confirmation</h3>
+                        <p>Get confirmation email with course details</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <section id="registration" class="registration">
+        <div class="container">
+            <h2 class="section-title">Student Registration Form</h2>
+            <div class="registration-container">
+                <div class="form-info">
+                    <h3>Join LearnIT Academy Today</h3>
+                    <p>Fill out this form to register for our online classes.</p>
+                    <div class="benefits">
+                        <h4>Why Choose LearnIT Academy?</h4>
+                        <ul>
+                            <li>Expert instructors with industry experience</li>
+                            <li>Flexible learning schedule</li>
+                            <li>Recordings of Classes Avaialble</li>
+                            <li>Career guidance</li>
+                            <li>Certificate upon completion</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <form id="registrationForm">
+                        <div class="form-group">
+                            <label for="fullName" class="required">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                            <div class="error" id="fullNameError">Please enter your full name</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fatherName" class="required">Father's Name</label>
+                            <input type="text" id="fatherName" name="fatherName" placeholder="Enter your father's name">
+                            <div class="error" id="fatherNameError">Please enter your father's name</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="required">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address">
+                            <div class="error" id="emailError">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="required">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                            <div class="error" id="phoneError">Please enter a valid phone number</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="course" class="required">Select Course</label>
+                            <select id="course" name="course">
+                                <option value="">Choose a course</option>
+                                <option value="web-development">10th Standard Physical Science</option>
+                                <option value="mobile-development">Intermediate Physics(oming soon)</option>
+                                <option value="cybersecurity">Intermediate Chemistry(coming soon)</option>
+                            </select>
+                            <div class="error" id="courseError">Please select a course</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additionalInfo">Additional Information (Optional)</label>
+                            <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any additional information you'd like to share (previous experience, expectations, etc.)"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">Register Now</button>
+                        
+                        <div class="success-message" id="successMessage">
+                            <h3>Thank you for registering with LearnIT Academy!</h3>
+                            <p>we will contact you for furtherdetails & instructions.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About LearnIT Academy</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Transforming Education by breaking classroom boundaries and using latest tools for teaching the students</h3>
+                    <p>LearnIT Academy was founded in 2020 with a mission to make quality education accessible to everyone. Our online platform brings expert instructors and comprehensive curriculum to our students.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <p>Expert Instructors</p>
+                        </div>
+                        <div class="stat">
+                            <h4>Other Courses</h4>
+                            <p>(coming soon)</p>
+                        </div>
+                        <div class="stat">
+                            <h4>95%</h4>
+                            <p>Completion Rate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <h3>Our Learning Environment</h3>
+                        <p>Interactive • Supportive • Exam-Focused</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Have questions about our courses or registration process? Our team is here to help.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <h4>Email</h4>
+                            <p>syedahmed8500@gmail.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Phone</h4>
+                            <p>+91 8801957246</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Address</h4>
+                            <p>8-15-96/13/1, Shama Colony, New Akbar Colony, Shastripuram Colony, RAJENDRANAGAR, Hyderabad, Telangana 500053</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Office Hours</h4>
+                            <p>Monday - Saturday: 7:00 PM - 9:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="LearnIT Academy Logo">
+                    </div>
+                    <div class="academy-name">
+                        <h3>LEARNIT ACADEMY</h3>
+                        <p>Empowering Minds Through Technology</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#courses">Courses</a></li>
+                            <li><a href="#registration">Registration</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Courses</h4>
+                        <ul>
+                            <li><a href="#">10th Standard Physical Science</a></li>
+                            <li><a href="#">Intermediate Physics</a></li>
+                            <li><a href="#">Intermediate Chemistry</a></li>
+                            <li><a href="#">All Courses</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LearnIT Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="scripts/script.js"></script>
 </body>

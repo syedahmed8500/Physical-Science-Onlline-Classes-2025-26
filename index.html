@@ -392,5 +392,17 @@ document.addEventListener('keydown', function(e) {
     }
 });
 </script>
+<script>
+    const scripturl = "https://script.google.com/macros/s/AKfycbx2nmv8EHozcBqBJj0yR4ev3EeND_UVhp-Ff-yxG01FoZJeK8Wa3l6eYk7GA6--7Xvd/exec"
+    const form = document.forms['product']
+
+    form.addEventListener{'submit',, e => {
+        e.preventDefault()
+        fetch(scripturl, {method: 'POST', body: new FormData(form)})
+        .then(response => alert("Thank You! Your Form is Submitted Successfully."))
+        .then(() => {  window.location.reload(); })
+        .catch(error => console.error('Error!', error.message))
+    }}
+</script>
 </body>
 </html>

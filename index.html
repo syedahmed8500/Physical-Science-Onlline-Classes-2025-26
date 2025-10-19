@@ -1,191 +1,65 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-    <title>PHYSICAL SCIENCE ONLINCE CLASSES</title>
-  </head>
-  <body>
-    <section class="hero is-primary is-bold">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">Registration Form</h1>
-        </div>
-      </div>
-    </section>
-    <form id="form" class="container m-4 pl-4">
-      <div class="field">
-        <label class="label">Full Name</label>
-        <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder="Your Full Name"
-            name="Full Name"
-          />
-        </div>
-      </div>
-      <div class="field">
-        <label class="label">Email Address</label>
-        <div class="control">
-          <input
-            class="input"
-            type="email"
-            placeholder="Your Email Address"
-            name="Email Address"
-          />
-          </div>
-      <div class="field">
-        <label class="label">Phone Number</label>
-        <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder="Your Phone Number"
-            name="Phone Number"
-          />
-          </div>
-      <div class="field">
-        <label class="label">Student's Grade/Class</label>
-        <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder="Your Student's Grade/Class"
-            name="Student's Grade/Class"
-          />
-        </div>
-      </div>
-      <div class="field">
-        <label class="label">Parent/Guardian Name</label>
-        <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder="Your Parent/Guardian Name"
-            name="Parent/Guardian Name"
-          />
-        </div>
-      </div>
-      </div>
-      <div class="field">
-        <label class="label">Additional Information</label>
-        <div class="control">
-          <textarea
-            class="textarea"
-            placeholder="Any additional information"
-            name="Notes"
-          ></textarea>
-        </div>
-      </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-primary" type="submit" id="submit-button">
-            Submit
-          </button>
-        </div>
-        <div class="control">
-          <button
-            class="button is-danger"
-            type="button"
-            onclick="document.getElementById('form').reset(); document.getElementById('fileNameDisplay').textContent = 'No file selected';"
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    </form>
-    <div
-      id="message"
-      style="
-        display: none;
-        margin: 20px;
-        padding: 10px;
-        border-radius: 4px;
-        font-weight: bold;
-      "
-    ></div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Class Registration</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Online Class Registration</h1>
+            <p class="subtitle">Register for our comprehensive online courses today!</p>
+        </header>
+        
+        
+        <section class="form-section">
+            <h2 class="section-title">Student Registration Form</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="fullName" class="required">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                    <div class="error" id="fullNameError">Please enter your full name</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fatherName" class="required">Father's Name</label>
+                    <input type="text" id="fatherName" name="fatherName" placeholder="Enter your father's name">
+                    <div class="error" id="fatherNameError">Please enter your father's name</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="required">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address">
+                    <div class="error" id="emailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" class="required">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    <div class="error" id="phoneError">Please enter a valid phone number</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="additionalInfo">Additional Information (Optional)</label>
+                    <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any additional information you'd like to share"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Register Now</button>
+                
+                <div class="success-message" id="successMessage">
+                    <h3>Thank you for registering!</h3>
+                    <p>We've sent a confirmation email to your address. You'll receive further instructions shortly.</p>
+                </div>
+            </form>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 Online Class Registration. All rights reserved.</p>
+        </footer>
+    </div>
 
-    <script>
-      const form = document.getElementById("form");
-      const submitButton = document.getElementById("submit-button");
-      const messageDiv = document.getElementById("message");
-      const fileInput = document.getElementById("fileInput");
-      const fileNameDisplay = document.getElementById("fileNameDisplay");
-
-      // Update displayed filename on file selection
-      fileInput.addEventListener("change", function () {
-        if (this.files && this.files.length > 0) {
-          fileNameDisplay.textContent = this.files[0].name;
-        } else {
-          fileNameDisplay.textContent = "No file selected";
-        }
-      });
-
-
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        messageDiv.textContent = "Submitting...";
-        messageDiv.style.display = "block";
-        messageDiv.style.backgroundColor = "beige";
-        messageDiv.style.color = "black";
-        submitButton.disabled = true;
-        submitButton.classList.add("is-loading");
-
-        try {
-          const formData = new FormData(this);
-          const formDataObj = {};
-
-          // Convert FormData to object
-          for (let [key, value] of formData.entries()) {
-            formDataObj[key] = value;
-          }
-
-
-          // Submit form data
-          const scriptURL =
-            "https://script.google.com/macros/s/AKfycbxisAIao4-QtOQCJsyLoDZUaO_A66QcQT6gA26GWdZRFYWE5BLMqkOAUUiufHGJ1YKqaw/exec";
-
-          const response = await fetch(scriptURL, {
-            redirect: "follow",
-            method: "POST",
-            body: JSON.stringify(formDataObj),
-            headers: {
-              "Content-Type": "text/plain;charset=utf-8",
-            },
-          });
-
-          const data = await response.json();
-
-          if (data.status === "success") {
-            messageDiv.textContent =
-              data.message || "Data submitted successfully!";
-            messageDiv.style.backgroundColor = "#48c78e";
-            messageDiv.style.color = "white";
-            form.reset();
-            fileNameDisplay.textContent = "No file selected";
-          } else {
-            throw new Error(data.message || "Submission failed");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          messageDiv.textContent = "Error: " + error.message;
-          messageDiv.style.backgroundColor = "#f14668";
-          messageDiv.style.color = "white";
-        } finally {
-          submitButton.disabled = false;
-          submitButton.classList.remove("is-loading");
-
-          setTimeout(() => {
-            messageDiv.textContent = "";
-            messageDiv.style.display = "none";
-          }, 4000);
-        }
-      });
-    </script>
-  </body>
+    <script src="scripts/script.js"></script>
+</body>
 </html>
-<script src="https://gist.github.com/pritamsharma45/85d41a6283ad3c3d039c171f06dc98de.js"></script>

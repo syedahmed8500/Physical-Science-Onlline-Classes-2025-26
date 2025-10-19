@@ -62,21 +62,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Prepare form data
                 const formData = {
+                    id: Date.now(), // Unique ID
                     fullName,
                     fatherName,
                     email,
                     phone,
                     course,
                     additionalInfo: document.getElementById('additionalInfo').value.trim(),
-                    timestamp: new Date().toISOString()
+                    timestamp: new Date().toLocaleString(),
+                    status: 'New'
                 };
                 
                 console.log('Registration Form submitted with data:', formData);
                 
-                // Store in localStorage (as a simple alternative to a database)
+                // Store in localStorage
                 let submissions = JSON.parse(localStorage.getItem('learnitRegistrations') || '[]');
                 submissions.push(formData);
                 localStorage.setItem('learnitRegistrations', JSON.stringify(submissions));
+                
+                // Send email notification (if using EmailJS)
+                sendEmailNotification(formData);
                 
                 // Reset form
                 registrationForm.reset();
@@ -115,10 +120,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Prepare contact data
             const contactData = {
+                id: Date.now(),
                 name: contactName,
                 email: contactEmail,
                 message: contactMessage,
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toLocaleString()
             };
             
             console.log('Contact Form submitted with data:', contactData);
@@ -196,3 +202,70 @@ document.addEventListener('DOMContentLoaded', function() {
     // Call on scroll
     window.addEventListener('scroll', animateOnScroll);
 });
+
+// Function to send email notification using EmailJS
+function sendEmailNotification(formData) {
+    // You need to set up EmailJS (free tier available)
+    // Replace with your actual EmailJS service ID, template ID, and user ID
+    if (typeof emailjs !== 'undefined') {
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            to_name: 'LearnIT Academy',
+            from_name: formData.fullName,
+            from_email: formData.email,
+            phone: formData.phone,
+            course: formData.course,
+            father_name: formData.fatherName,
+            additional_info: formData.additionalInfo,
+            timestamp: formData.timestamp
+        }, 'YOUR_USER_ID')
+        .then(function(response) {
+            console.log('Email sent successfully!', response);
+        }, function(error) {
+            console.log('Email failed to send:', error);
+        });
+    }
+}
+
+// Admin function to view all registrations
+function viewRegistrations() {
+    const submissions = JSON.parse(localStorage.getItem('learnitRegistrations') || '[]');
+    console.table(submissions);
+    return submissions;
+}
+
+// Admin function to export data as CSV
+function exportToCSV() {
+    const submissions = JSON.parse(localStorage.getItem('learnitRegistrations') || '[]');
+    if (submissions.length === 0) {
+        alert('No data to export');
+        return;
+    }
+    
+    // Create CSV header
+    let csv = 'ID,Full Name,Father Name,Email,Phone,Course,Additional Info,Timestamp,Status\n';
+    
+    // Add data rows
+    submissions.forEach(submission => {
+        csv += `"${submission.id}","${submission.fullName}","${submission.fatherName}","${submission.email}","${submission.phone}","${submission.course}","${submission.additionalInfo}","${submission.timestamp}","${submission.status}"\n`;
+    });
+    
+    // Create download link
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('hidden', '');
+    a.setAttribute('href', url);
+    a.setAttribute('download', `learnit_registrations_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+// Admin function to clear all data
+function clearAllData() {
+    if (confirm('Are you sure you want to clear all registration data? This cannot be undone.')) {
+        localStorage.removeItem('learnitRegistrations');
+        localStorage.removeItem('learnitContacts');
+        alert('All data has been cleared.');
+    }
+}

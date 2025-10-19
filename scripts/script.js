@@ -302,3 +302,36 @@ async function saveToGoogleSheets(formData) {
         return false;
     }
 }
+// Enhanced admin panel with Google Sheets data
+async function loadAllRegistrations() {
+    console.log('Loading data from all sources...');
+    
+    // 1. Local data (current device)
+    const localData = JSON.parse(localStorage.getItem('learnitRegistrations') || '[]');
+    console.log('Local submissions:', localData.length);
+    
+    // 2. Google Sheets data (all devices) - if integrated
+    let sheetsData = [];
+    if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('https://script.google.com/macros/s/AKfycbzoU9eFujv3ratPQ60txKtl24-XAMxGH4Tql2QMEEGb7ik7CnehJiWRQlNozU_Moy-4Ww/exec')) {
+        try {
+            sheetsData = await loadDataFromGoogleSheets();
+            console.log('Google Sheets submissions:', sheetsData.length);
+        } catch (error) {
+            console.log('Could not load Google Sheets data:', error);
+        }
+    }
+    
+    // Combine and display all data
+    const allData = [...sheetsData, ...localData];
+    console.log('Total submissions from all sources:', allData.length);
+    
+    return allData;
+}
+
+// Function to fetch data from Google Sheets
+async function loadDataFromGoogleSheets() {
+    // This would require a separate Google Apps Script function to return data
+    // For now, this is a placeholder
+    console.log('Google Sheets data loading not yet implemented');
+    return [];
+}

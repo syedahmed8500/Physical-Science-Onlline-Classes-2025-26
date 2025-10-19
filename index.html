@@ -185,14 +185,6 @@
           }, 4000);
         }
       });
-
-      // Enhance cancel button to reset file input display
-      const cancelButton = form.querySelector("button.is-danger");
-      cancelButton.addEventListener("click", function () {
-        form.reset();
-        fileNameDisplay.textContent = "No file selected";
-        messageDiv.style.display = "none";
-      });
     </script>
   </body>
 </html>

@@ -1,22 +1,14 @@
-# Online Class Registration Website
+# LearnIT Academy Website
 
-A responsive website with a registration form for online classes, featuring a visual flowchart of the registration process.
+A comprehensive website for LearnIT Academy featuring course information, registration form, and contact details.
 
 ## Features
 
-- Clean, modern design with gradient elements
-- Responsive layout that works on all devices
-- Form validation with error messages
-- Visual flowchart showing registration process
-- Success message upon form submission
-- Local storage of form submissions
-
-## Data Collected
-
-1. Full Name
-2. Father Name
-3. Email Address
-4. Phone Number
-5. Additional Information (Optional)
+- Responsive design that works on all devices
+- Interactive registration form with validation
+- Course catalog with details
+- Registration process flowchart
+- Contact form
+- Modern UI with smooth animations
 
 ## File Structure

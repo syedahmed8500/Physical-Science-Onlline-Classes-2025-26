@@ -269,3 +269,36 @@ function clearAllData() {
         alert('All data has been cleared.');
     }
 }
+// Google Apps Script Integration
+const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+
+async function saveToGoogleSheets(formData) {
+    // If no Google Script URL is set, skip
+    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('https://script.google.com/macros/s/AKfycbzkf22MgLE8FdEy_Dc6oVPm2LefqSMUHMfGVY4xiVn3OmQPqXRLCIuAJSQZwmk-4-fVuA/exec')) {
+        console.log('Google Script URL not configured. Data saved to localStorage only.');
+        return false;
+    }
+    
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            console.log('Data saved to Google Sheets:', result);
+            return true;
+        } else {
+            console.error('Google Sheets error:', result.error);
+            return false;
+        }
+    } catch (error) {
+        console.error('Failed to save to Google Sheets:', error);
+        return false;
+    }
+}
